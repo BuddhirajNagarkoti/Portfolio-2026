@@ -333,7 +333,7 @@ function updatePlayer() {
 
             // Apply Velocity & Friction
             game.balloonY += game.balloonVelocity;
-            game.balloonVelocity *= 0.92; // Friction (Air drag)
+            game.balloonVelocity *= 0.93; // Friction (Air drag)
 
             // Hard limits with bounce-back damping
             if (game.balloonY < -6000) { game.balloonY = -6000; game.balloonVelocity = 0; }
@@ -387,7 +387,7 @@ function updatePlayer() {
             }
 
             game.balloonY += game.balloonVelocity;
-            game.balloonVelocity *= 0.92;
+            game.balloonVelocity *= 0.93;
 
             if (game.balloonY > 40) { game.balloonY = 40; game.balloonVelocity = 0; }
             if (game.balloonY < -6000) { game.balloonY = -6000; game.balloonVelocity = 0; }
@@ -603,11 +603,11 @@ function updatePlayer() {
             if (Math.abs(game.carScrollDelta) < 1) game.carScrollDelta = 0;
         }
 
-        // Dynamic Friction (Lower than walking for "rolling" feel)
-        p.vx *= 0.96;
+        // Dynamic Friction (Matched to default 0.93)
+        p.vx *= 0.93;
 
-        // Max Speed Cap for Car (Reduced by half: 19.5 -> 9.5)
-        const MAX_CAR_SPEED = 9.5;
+        // Max Speed Cap for Car (Reduced to 8)
+        const MAX_CAR_SPEED = 8;
         if (Math.abs(p.vx) > MAX_CAR_SPEED) p.vx = Math.sign(p.vx) * MAX_CAR_SPEED;
 
         let minCarX = (p.x >= 10400) ? 10400 : 0;
