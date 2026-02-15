@@ -1042,7 +1042,7 @@ function updateStoryProgress() {
         game.camera.x = 4965 - (CONFIG.WIDTH * 0.5);
 
         // Dialogue
-        game.activeDialogue = "Time to climb the\ncorporate ladder!";
+        game.activeDialogue = "Time to Learn and\ngain Experience";
         game.dialogueTimer = 240;
     }
 
