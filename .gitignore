@@ -1,0 +1,39 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE / Editor folders
+.vscode/
+.idea/
+.sublime-project
+.sublime-workspace
+*.swp
+*.swo
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Build and Backups (Snapshots)
+# It's better to keep only source code in Git. 
+# These manual backups can be quite large and clutter the repo.
+/final release/
+/ready to deploy/
+/till barahi adventure/
+/roller coaster starts here/
+/reference assests/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Archive files
+*.zip

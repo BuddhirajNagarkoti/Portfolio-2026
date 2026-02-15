@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buddhiraj Nagarkoti Portfolio 2026</title>
+  <meta name="description"
+    content="Explore Buddhiraj's portfolio as a retro 2D platformer game. Scroll to discover skills, education, work experience, and more!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23f5c842%22 rx=%2215%22/><text y=%22.8em%22 x=%2250%22 text-anchor=%22middle%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2280%22 fill=%22%23000%22>B</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <canvas id="gameCanvas"></canvas>
+  <div id="transitionOverlay" class="transition-overlay"></div>
+
+  <div id="levelName" class="level-name">Introduction</div>
+  <!-- HUD Overlay -->
+  <div id="hud" class="hud hidden">
+    <div class="hud-left">
+    </div>
+    <div class="hud-right">
+      <div id="skillBar" class="skill-bar-container"></div>
+    </div>
+  </div>
+
+  <!-- Start Screen -->
+  <div id="startScreen" class="overlay start-screen">
+    <div class="start-content">
+      <!-- Icons removed as requested -->
+      <h1 class="game-title">Buddhiraj Nagarkoti<br><span class="title-accent">Portfolio</span></h1>
+      <div class="subtitle">A career journey</div>
+      <div class="scroll-prompt">
+        <div class="scroll-icon">🖱️</div>
+        <p>Scroll your mouse wheel or trackpad to move!</p>
+        <p class="hint">↓ Scroll Down = Move Right &nbsp;|&nbsp; ↑ Scroll Up = Move Left</p>
+      </div>
+      <div class="start-cta pulse">⟱ SCROLL DOWN TO BEGIN ⟱</div>
+    </div>
+  </div>
+
+  <!-- Popup Notification -->
+  <div id="popup" class="popup hidden">
+    <div class="popup-icon" id="popupIcon"></div>
+    <div class="popup-text">
+      <div id="popupTitle" class="popup-title"></div>
+      <div id="popupDesc" class="popup-desc"></div>
+    </div>
+  </div>
+
+  <!-- End Screen -->
+  <div id="endScreen" class="overlay end-screen hidden">
+    <div class="end-content">
+      <h1>QUEST COMPLETED</h1>
+      <p class="end-subtitle">Thank you for exploring my Portfolio journey.<br><span class="end-name">Buddhiraj
+          Nagarkoti</span></p>
+      <div class="resume-summary" id="resumeSummary"></div>
+      <div id="contactLinks" class="contact-links"></div>
+      <button id="restartBtn" class="restart-btn">PLAY AGAIN</button>
+    </div>
+  </div>
+
+  <script src="levels.js"></script>
+  <script src="game.js"></script>
+</body>
+
+</html>

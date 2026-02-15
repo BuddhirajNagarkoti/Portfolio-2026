@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 407 417">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #936542;
+      }
+
+      .cls-2 {
+        fill: #ad764e;
+      }
+
+      .cls-3 {
+        fill: #ffcb22;
+      }
+
+      .cls-4 {
+        fill: #f5af2a;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g>
+    <g id="Layer_1">
+      <g>
+        <rect class="cls-2" x="-.3" y="-.4" width="406.7" height="416.9"/>
+        <rect class="cls-3" x="43.3" y="44.3" width="319.4" height="327.3"/>
+        <g>
+          <rect class="cls-4" x="54.6" y="339.2" width="31.6" height="32.8"/>
+          <polygon class="cls-4" points="333.7 44.3 333.7 77.1 302 77.1 302 109.9 270.4 109.9 270.4 142.6 238.8 142.6 238.8 175.4 207.1 175.4 207.1 208.1 175.5 208.1 175.5 240.9 143.9 240.9 143.9 273.7 112.2 273.7 112.2 306.4 80.6 306.4 80.6 339.2 80.6 371.9 112.2 371.9 143.9 371.9 175.5 371.9 207.1 371.9 238.8 371.9 270.4 371.9 302 371.9 333.7 371.9 365.3 371.9 365.3 339.2 365.3 306.4 365.3 273.7 365.3 240.9 365.3 208.1 365.3 175.4 365.3 142.6 365.3 109.9 365.3 77.1 365.3 44.3 333.7 44.3"/>
+        </g>
+        <rect class="cls-2" x="26.5" y="51" width="30.4" height="30.4"/>
+        <g>
+          <rect class="cls-2" x="26.5" y="28.4" width="30.4" height="53"/>
+          <rect class="cls-2" x="54.7" y="24.5" width="30.4" height="30.4"/>
+        </g>
+        <g>
+          <rect class="cls-2" x="348.4" y="26.5" width="30.4" height="52.9"/>
+          <rect class="cls-2" x="320.2" y="22.6" width="30.4" height="30.4"/>
+        </g>
+        <g>
+          <rect class="cls-2" x="26.8" y="332.7" width="30.4" height="53"/>
+          <rect class="cls-2" x="55.1" y="359.1" width="30.4" height="30.4"/>
+        </g>
+        <g>
+          <rect class="cls-2" x="348.8" y="334.6" width="30.4" height="52.9"/>
+          <rect class="cls-2" x="320.6" y="361.1" width="30.4" height="30.4"/>
+        </g>
+        <path class="cls-1" d="M112.2,161.8v-30.2h30.2v30.2h-30.2ZM172.7,282.9v-60.5h30.3v-30.3h30.2v-60.5h-90.8v-30.3h121.1v30.3h30.3v60.5h-30.3v30.3h-30.3v60.5h-60.5ZM172.7,343.5v-30.3h60.5v30.3h-60.5Z"/>
+      </g>
+    </g>
+  </g>
+</svg>
