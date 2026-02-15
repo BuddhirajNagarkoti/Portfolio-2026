@@ -2185,11 +2185,6 @@ function render() {
         ctx.fillText('↓ Scroll to move →', CONFIG.WIDTH / 2, CONFIG.HEIGHT - 30); ctx.textAlign = 'left';
     }
 
-    // ── DEBUG ──
-    ctx.fillStyle = '#ffff00'; ctx.font = 'bold 16px monospace'; ctx.textAlign = 'left';
-    ctx.fillText(`X: ${Math.round(p.x)}`, 20, 140);
-    ctx.fillText(`Y: ${Math.round(game.state.includes('BALLOON') ? game.balloonY : p.y)}`, 20, 160);
-    if (game.state.includes('BALLOON')) ctx.fillText(`🎈 Scrolls: ${game.balloonTotalScrolls || 0}`, 20, 180);
 }
 
 // ══════════════════
