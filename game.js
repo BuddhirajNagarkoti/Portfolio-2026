@@ -904,7 +904,7 @@ function updateStoryProgress() {
     if (game.state === 'PLAYING') {
         triggerDialogue('d_start', "Welcome to the story\nof my portfolio!", 200);
         triggerDialogue('d_journey', "Its an 11 year journey -\nkeep scrolling till the end", 2108);
-        triggerDialogue('d_chasing', "The only way is up.\nChasing the Dream", 5540);
+        triggerDialogue('d_chasing', "Learn Hard. Work Harder.\nChase the dream", 5540);
         triggerDialogue('d_growth', "I need growth.\nTime to soar for new heights", 7705);
     }
 
