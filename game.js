@@ -953,15 +953,8 @@ function updateStoryProgress() {
     document.getElementById('levelName').textContent = displayName;
 
     // Trigger Summary Boards based on milestones (using global function)
-
-    const boardRange = 400;
-    // Board 0
-    if (Math.abs(px - 2910) < boardRange) triggerLevelSummary(0, 2910);
-    else if (Math.abs(px - 2910) > boardRange + 200) game.summaryBoardTimers[0] = false;
-
-    // Board 1
-    if (Math.abs(px - 7050) < boardRange) triggerLevelSummary(1, 7050);
-    else if (Math.abs(px - 7050) > boardRange + 200) game.summaryBoardTimers[1] = false;
+    if (px > 2910) triggerLevelSummary(0, 2910);
+    if (px > 7000) triggerLevelSummary(1, 7050);
     // Board 2 transition removed to avoid overlap with Board 3 (Design Manager)
     // Board 3 is now triggered on landing in updatePlayer()
 
@@ -1066,17 +1059,6 @@ function updateStoryProgress() {
 
 // ── Level Summary (In-World Signboards) ──
 function triggerLevelSummary(id, x) {
-    // Check if board already exists in the system
-    const existing = game.summaryBoards.find(b => b.levelIdx === id);
-    if (existing) {
-        // If we are far enough to trigger a "re-pop", reset its spawnTime
-        if (game.summaryBoardTimers[id] === false) {
-            existing.spawnTime = game.time;
-            game.summaryBoardTimers[id] = true;
-        }
-        return;
-    }
-
     if (game.summaryBoardTimers[id] === true) return;
     game.summaryBoardTimers[id] = true;
     showLevelSummary(id, x);
@@ -1148,15 +1130,7 @@ function renderSummaryBoards(ctx, cam, camY, t) {
         if (screenX < -1200 || screenX > CONFIG.WIDTH + 400) return;
 
         const elapsed = (t - board.spawnTime) * 60;
-        const fadeTransition = Math.min(1, elapsed * 0.025);
-
-        // Proximity Fade: Pop in when near, fade out when far
-        const dist = Math.abs(board.worldX - game.player.x);
-        let proximAlpha = 1;
-        if (dist > 800) proximAlpha = 0;
-        else if (dist > 400) proximAlpha = 1 - (dist - 400) / 400;
-
-        const alpha = Math.min(0.95, fadeTransition * proximAlpha);
+        const alpha = Math.min(0.95, elapsed * 0.025);
         if (alpha <= 0) return;
         ctx.globalAlpha = alpha;
 
