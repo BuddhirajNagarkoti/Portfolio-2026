@@ -887,29 +887,25 @@ function updateStoryProgress() {
         if (game.dialogueTimer <= 0) game.activeDialogue = null;
     }
 
-    // Story Dialogue Triggers
-    if (game.state === 'PLAYING' && px < 400 && !game.summaryBoardTimers['d_start']) {
-        game.summaryBoardTimers['d_start'] = true;
-        game.activeDialogue = "Welcome to the story\nof my portfolio!";
-        game.dialogueTimer = 240;
+    // Story Dialogue Triggers (Zone-based & Repeatable)
+    function triggerDialogue(id, text, xTarget, range = 300) {
+        const dist = Math.abs(px - xTarget);
+        if (dist < range) {
+            if (!game.summaryBoardTimers[id]) {
+                game.activeDialogue = text;
+                game.dialogueTimer = 240;
+                game.summaryBoardTimers[id] = true;
+            }
+        } else if (dist > range + 200) {
+            game.summaryBoardTimers[id] = false; // Allow re-triggering when returning
+        }
     }
 
-    if (px > 2108 && !game.summaryBoardTimers['d_journey']) {
-        game.summaryBoardTimers['d_journey'] = true;
-        game.activeDialogue = "Its an 11 year journey -\nkeep scrolling till the end";
-        game.dialogueTimer = 240;
-    }
-
-    if (px > 5540 && !game.summaryBoardTimers['d_chasing']) {
-        game.summaryBoardTimers['d_chasing'] = true;
-        game.activeDialogue = "The only way is up.\nChasing the Dream";
-        game.dialogueTimer = 240;
-    }
-
-    if (px > 7705 && !game.summaryBoardTimers['d_growth']) {
-        game.summaryBoardTimers['d_growth'] = true;
-        game.activeDialogue = "I need growth.\nTime to soar for new heights";
-        game.dialogueTimer = 240;
+    if (game.state === 'PLAYING') {
+        triggerDialogue('d_start', "Welcome to the story\nof my portfolio!", 200);
+        triggerDialogue('d_journey', "Its an 11 year journey -\nkeep scrolling till the end", 2108);
+        triggerDialogue('d_chasing', "The only way is up.\nChasing the Dream", 5540);
+        triggerDialogue('d_growth', "I need growth.\nTime to soar for new heights", 7705);
     }
 
     // Balloon Ascent Dialogues
@@ -956,81 +952,33 @@ function updateStoryProgress() {
 
     document.getElementById('levelName').textContent = displayName;
 
-    // Trigger Summary Boards based on milestones
-    function triggerLevelSummary(id, x) {
-        if (game.summaryBoardTimers[id]) return;
-        game.summaryBoardTimers[id] = true;
-        showLevelSummary(id, x);
-    }
+    // Trigger Summary Boards based on milestones (using global function)
 
-    if (px > 2910) {
-        triggerLevelSummary(0, 2910);
-    }
-    if (px > 7000) {
-        triggerLevelSummary(1, 7050); // Show near balloon
-    }
+    const boardRange = 400;
+    // Board 0
+    if (Math.abs(px - 2910) < boardRange) triggerLevelSummary(0, 2910);
+    else if (Math.abs(px - 2910) > boardRange + 200) game.summaryBoardTimers[0] = false;
+
+    // Board 1
+    if (Math.abs(px - 7050) < boardRange) triggerLevelSummary(1, 7050);
+    else if (Math.abs(px - 7050) > boardRange + 200) game.summaryBoardTimers[1] = false;
     // Board 2 transition removed to avoid overlap with Board 3 (Design Manager)
     // Board 3 is now triggered on landing in updatePlayer()
 
     // ── Career Break Monologue ──
-    if (px > 10450 && !game.summaryBoardTimers['cb_m1']) {
-        game.summaryBoardTimers['cb_m1'] = true;
-        game.activeDialogue = "HUH?? I was right there.\nI was this close,";
-        game.dialogueTimer = 240;
-    }
-    if (px > 10950 && !game.summaryBoardTimers['cb_m2']) {
-        game.summaryBoardTimers['cb_m2'] = true;
-        game.activeDialogue = "My dream was just within\nmy arms length.";
-        game.dialogueTimer = 240;
-    }
-    if (px > 11450 && !game.summaryBoardTimers['cb_m3']) {
-        game.summaryBoardTimers['cb_m3'] = true;
-        game.activeDialogue = "Now I don't know where I am\nor how to reach there back again.";
-        game.dialogueTimer = 240;
-    }
-    if (px > 11950 && !game.summaryBoardTimers['cb_m4']) {
-        game.summaryBoardTimers['cb_m4'] = true;
-        game.activeDialogue = "It has been delayed again.";
-        game.dialogueTimer = 240;
-    }
-    if (px > 12450 && !game.summaryBoardTimers['cb_m5']) {
-        game.summaryBoardTimers['cb_m5'] = true;
-        game.activeDialogue = "Should I go abroad?\nShould I start something?....";
-        game.dialogueTimer = 240;
-    }
-    if (px > 12950 && !game.summaryBoardTimers['cb_m6']) {
-        game.summaryBoardTimers['cb_m6'] = true;
-        game.activeDialogue = "I know what i should do.\nI should not stay doing nothing.";
-        game.dialogueTimer = 240;
-    }
-    if (px > 13450 && !game.summaryBoardTimers['cb_m7']) {
-        game.summaryBoardTimers['cb_m7'] = true;
-        game.activeDialogue = "I will hop on any opportunity\nI get and start fresh.";
-        game.dialogueTimer = 240;
-    }
-    if (px > 15000 && !game.summaryBoardTimers['cb_barahi_intro']) {
-        game.summaryBoardTimers['cb_barahi_intro'] = true;
-        game.activeDialogue = "Hospitality & Service - I wonder how this\nindustry is. Its exciting! Lets gooo!";
-        game.dialogueTimer = 240;
-    }
+    // Career Break Monologue (Repeatable)
+    triggerDialogue('cb_m1', "HUH?? I was right there.\nI was this close,", 10450);
+    triggerDialogue('cb_m2', "My dream was just within\nmy arms length.", 10950);
+    triggerDialogue('cb_m3', "Now I don't know where I am\nor how to reach there back again.", 11450);
+    triggerDialogue('cb_m4', "It has been delayed again.", 11950);
+    triggerDialogue('cb_m5', "Should I go abroad?\nShould I start something?....", 12450);
+    triggerDialogue('cb_m6', "I know what i should do.\nI should not stay doing nothing.", 12950);
+    triggerDialogue('cb_m7', "I will hop on any opportunity\nI get and start fresh.", 13450);
+    triggerDialogue('cb_barahi_intro', "Hospitality & Service - I wonder how this\nindustry is. Its exciting! Lets gooo!", 15000);
 
-    if (px > 17600 && !game.summaryBoardTimers['d_barahi_work']) {
-        game.summaryBoardTimers['d_barahi_work'] = true;
-        game.activeDialogue = "Not so different than how\ni was working.";
-        game.dialogueTimer = 240;
-    }
-
-    if (px > 18700 && !game.summaryBoardTimers['d_barahi_places']) {
-        game.summaryBoardTimers['d_barahi_places'] = true;
-        game.activeDialogue = "I got to go to Pokhara and\nchitwan. Nice places";
-        game.dialogueTimer = 240;
-    }
-
-    if (px > 19500 && !game.summaryBoardTimers['d_barahi_comfort']) {
-        game.summaryBoardTimers['d_barahi_comfort'] = true;
-        game.activeDialogue = "I am getting comfortable in\nthis new industry";
-        game.dialogueTimer = 240;
-    }
+    triggerDialogue('d_barahi_work', "Not so different than how\ni was working.", 17600);
+    triggerDialogue('d_barahi_places', "I got to go to Pokhara and\nchitwan. Nice places", 18700);
+    triggerDialogue('d_barahi_comfort', "I am getting comfortable in\nthis new industry", 19500);
 
     if (px > 26000 && px < 30000 && !game.summaryBoardTimers['d_coaster_shock']) {
         game.summaryBoardTimers['d_coaster_shock'] = true;
@@ -1118,6 +1066,17 @@ function updateStoryProgress() {
 
 // ── Level Summary (In-World Signboards) ──
 function triggerLevelSummary(id, x) {
+    // Check if board already exists in the system
+    const existing = game.summaryBoards.find(b => b.levelIdx === id);
+    if (existing) {
+        // If we are far enough to trigger a "re-pop", reset its spawnTime
+        if (game.summaryBoardTimers[id] === false) {
+            existing.spawnTime = game.time;
+            game.summaryBoardTimers[id] = true;
+        }
+        return;
+    }
+
     if (game.summaryBoardTimers[id] === true) return;
     game.summaryBoardTimers[id] = true;
     showLevelSummary(id, x);
@@ -1189,7 +1148,16 @@ function renderSummaryBoards(ctx, cam, camY, t) {
         if (screenX < -1200 || screenX > CONFIG.WIDTH + 400) return;
 
         const elapsed = (t - board.spawnTime) * 60;
-        const alpha = Math.min(0.95, elapsed * 0.025);
+        const fadeTransition = Math.min(1, elapsed * 0.025);
+
+        // Proximity Fade: Pop in when near, fade out when far
+        const dist = Math.abs(board.worldX - game.player.x);
+        let proximAlpha = 1;
+        if (dist > 800) proximAlpha = 0;
+        else if (dist > 400) proximAlpha = 1 - (dist - 400) / 400;
+
+        const alpha = Math.min(0.95, fadeTransition * proximAlpha);
+        if (alpha <= 0) return;
         ctx.globalAlpha = alpha;
 
         const panelW = 1040, panelH = 800; // 520->1040, 400->800
