@@ -2171,14 +2171,8 @@ function render() {
     });
     ctx.globalAlpha = 1;
 
-    // ── HUD / GUI (Progress, Intro, Prompts) ──
-    const barW = CONFIG.WIDTH * 0.6;
-    const bx = (CONFIG.WIDTH - barW) / 2;
-    const by = CONFIG.HEIGHT - 24;
-    ctx.fillStyle = 'rgba(0,0,0,0.2)'; ctx.fillRect(bx, by, barW, 8);
-    const prog = p.x / CONFIG.WORLD_W;
-    ctx.fillStyle = '#f5c842'; ctx.fillRect(bx, by, Math.max(0, Math.min(barW, barW * prog)), 8);
-    ctx.fillStyle = '#fff'; ctx.fillRect(bx + Math.max(0, Math.min(barW, barW * prog)) - 4, by - 4, 8, 16);
+    // ── HUD / GUI (Intro Prompts) ──
+
 
     if (game.state === 'PLAYING' && Math.abs(p.vx) < 0.3 && game.time > 2 && Math.sin(game.time * 3) > 0) {
         ctx.fillStyle = 'rgba(255,255,255,0.5)'; ctx.font = '18px "Press Start 2P"'; ctx.textAlign = 'center';
